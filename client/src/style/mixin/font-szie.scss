@@ -1,0 +1,33 @@
+@mixin jura {
+    font-family: "Jura", sans-serif;
+    font-optical-sizing: auto;
+}
+@mixin alumni-sans {
+    font-family: "Alumni Sans", sans-serif;
+    font-optical-sizing: auto;
+}
+
+@mixin h1 {
+    line-height: 72px;
+    font-size: 64px;
+    font-weight: 300;
+}
+@mixin h2 {
+    line-height: 42px;
+    font-size: 42px;
+    font-weight: 300;
+}
+@mixin h3 {
+    line-height: 32px;
+    font-size: 32px;
+    font-weight: 300;
+}
+
+@mixin big-text {
+    line-height: 24px;
+    font-size: 20px;
+}
+@mixin text {
+    line-height: 20px;
+    font-size: 16px;
+}

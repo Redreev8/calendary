@@ -1,0 +1,61 @@
+@import '../../style/root.scss';
+@import '../../style/mixin/_all.scss';
+
+.btn {
+    @include jura;
+    display: flex;
+    align-items: center;
+    gap: $g-md;
+    background-color: inherit;
+    padding: $g-md;
+    border: $border-line;
+    transition: background-color .6s .0s,
+                color .6s 0s;
+    cursor: pointer;
+    
+    &:not(:disabled):hover {
+        color: $white;
+        background-color: $black;
+    }
+
+    &:not(:disabled):hover:has(&__icon) {
+        transition: background-color .6s .6s,
+                    color .6s .6s;
+    }
+
+    &__text {
+        @include text;
+    }
+
+    &__icon {
+        display: block;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        width: 48px;
+        height: 48px;
+        &::before {
+            content: "";
+            display: block;
+            width: 48%;
+            height: 48%;
+        }
+        & svg {
+            stroke: currentColor;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 16px;
+            height: 16px;
+            transform: translate(-50%, -50%);
+            transition: transform .6s 0s;
+        }
+
+        
+    }
+
+    &:not(:disabled):hover &__icon svg {}
+    &:not(:disabled):hover &__icon::before {}
+}

@@ -1,0 +1,29 @@
+$black: #000000;
+$gray: #4D4D4D;
+$red: #ff0000;
+$green: #00ff00;
+$border-color: #E5E5E5;
+$label: #FAFAFA;
+$white: #fff;
+
+$w-container: 1524px;
+
+$g-xl: 64px;
+$g-lg: 44px;
+$g: 16px;
+$g-md: 12px;
+$g-sm: 8px;
+$g-xs: 4px;
+$g-tiny: 4px;
+
+$padding-box: 20px;
+
+$h-header: 0;
+
+$container-width: 100%;
+$container-grid: (1fr) (1fr 1fr) 
+                (1fr 1fr 1fr);
+
+$border-line-width: 2px;
+$border-line-color: $label;
+$border-line: $border-line-width solid $border-line-color;

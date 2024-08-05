@@ -1,0 +1,41 @@
+@import '../../style/root.scss';
+
+.list {
+    position: relative;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: $g-xs;
+    margin: 0;
+    padding: 0;
+    &__item {
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+    &--row {
+        flex-direction: row;
+    }
+    &--border {
+        gap: 0;
+        border-bottom: $border-line;
+    }
+    &--border &__item {
+        border-bottom: $border-line;
+        & > * {
+            border: none;
+        }
+    }
+    &--border.list--row {
+        display: flex;
+        border-bottom: none;
+    }
+    &--border.list--row &__item {
+        border-top: $border-line;
+        border-left: $border-line;
+    }
+    &--no-border-last &__item:last-child {
+        border-bottom: none;
+        height: 100%;
+    }
+}

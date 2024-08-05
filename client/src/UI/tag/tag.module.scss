@@ -1,0 +1,8 @@
+@import '../../style/root.scss';
+
+.tag {
+    display: inline;
+    padding: $g-sm;
+    padding-top: $g-sm - $g-tiny;
+    border: $border-line;
+}
