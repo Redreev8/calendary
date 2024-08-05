@@ -18,7 +18,7 @@
     }
     &--border {
         gap: 0;
-        border-bottom: $border-line;
+        border-top: $border-line;
     }
     &--border &__item {
         border-bottom: $border-line;
@@ -30,7 +30,7 @@
         display: flex;
         border-bottom: none;
     }
-    &--border.list--row &__item {
+    &--border.list--row>&__item {
         border-top: $border-line;
         border-left: $border-line;
     }

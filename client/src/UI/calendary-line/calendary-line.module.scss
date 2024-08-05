@@ -1,1 +1,28 @@
-@import '@/style/root.scss';
+@import '../../style/root.scss';
+
+.list {
+    height: 100%;
+}
+
+.day {
+    position: sticky;
+    top: 0;
+    background-color: $white;
+    margin: 0;
+    padding: $g-md;
+    border-bottom: $border-line;
+    z-index: 1;
+    & + div > div > div > ul {
+        border-top: 0;
+    } 
+}
+
+.content {
+    width: calc(100vw / 7);
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.scroll {
+    height: 100%;
+}

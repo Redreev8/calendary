@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import Table from '../table'
 import useCalendary from './useCalendary'
 
-export interface Props extends PropsGetDaysWeek {
+export interface CalendaryProps extends PropsGetDaysWeek {
     data: {
         [key: number]: {
             [key: number]: ReactNode
@@ -14,7 +14,7 @@ export interface Props extends PropsGetDaysWeek {
     isList?: boolean
 }
 
-const Calendary = ({ day = 1, month, year, data, isList=true }: Props) => {
+const Calendary = ({ day = 1, month, year, data, isList=true }: CalendaryProps) => {
     const cl = classnames({
         [style.list]: isList
     })

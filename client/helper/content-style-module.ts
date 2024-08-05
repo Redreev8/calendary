@@ -1,1 +1,1 @@
-export default () => `@import '@/style/root.scss';`
+export default () => `@import '../../style/root.scss';`
