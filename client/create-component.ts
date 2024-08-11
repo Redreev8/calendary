@@ -1,39 +1,37 @@
-import fs from 'fs'
-import path from 'path'
 import contentTsx from './helper/content-tsx'
 import contentIndex from './helper/content-index'
 import contentStyleModule from './helper/content-style-module'
 import __dirname from './__dirname'
+import CreateComponentFile from './helper/create-component-file'
 
-interface Args {
-    name: string
-    path: 'UI' | 'components'
-}
+const folders = ['UI', 'components', 'pages']
 
-const args: Args = {
-    name: 'component',
-    path: 'UI'
-}
-for (let i = 2; i < process.argv.length; i++) {
-    const el = process.argv[i].split('=')
-    if (el[0] === 'name') args[el[0]] = el[1]
-    if (el[0] === 'path' && (el[1] === 'UI' || el[1] === 'components')) args[el[0]] = el[1]    
-}
-
-const dir = path.join(__dirname, 'src', args['path'], args.name)
-fs.mkdirSync(dir)
-fs.writeFileSync(
-    path.join(dir, `${args.name}.tsx`),
-    contentTsx(args.name),
-    { encoding: "utf8", flag: 'w' }
-)
-fs.writeFileSync(
-    path.join(dir, 'index.ts'),
-    contentIndex(args.name),
-    { encoding: "utf8", flag: 'w' }
-)
-fs.writeFileSync(
-    path.join(dir, `${args.name}.module.scss`),
-    contentStyleModule(),
-    { encoding: "utf8", flag: 'w' }
-)
+CreateComponentFile({
+    args: {
+        name: 'component',
+        path: {
+            defult: folders[0],
+            cdheked: (value) => folders.includes(value)
+        },
+        isStyle: 'true',
+    },
+    pathFolder: [__dirname, 'src', ({ path }) => path],
+    files: [
+        ({ name }) => name,
+        {
+            name: ({ name }) => `${name}.tsx`,
+            content: ({ name }) => contentTsx(name),
+        },
+        {
+            name: 'index.ts',
+            content: ({ name }) => contentIndex(name),
+        },
+        {
+            name: ({ isStyle, name }) => {
+                if (isStyle === 'false') return
+                return `${name}.module.scss`
+            },
+            content: () => contentStyleModule(),
+        },
+    ]
+})

@@ -8,7 +8,7 @@ interface ${formatWord(name, 'PascalCase')}Props {
 }
 
 const ${formatWord(name, 'PascalCase')}: FC<${formatWord(name, 'PascalCase')}Props> = ({ className }) => {
-    const cl = classNames(style.logo, className)
+    const cl = classNames(style.${name}, className)
     return (
 
     )
