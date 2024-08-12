@@ -1,18 +1,18 @@
-import { FC, ReactNode } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import style from './tag.module.scss'
 import classNames from 'classnames'
-interface TagInterface {
+interface TagProps {
     children: ReactNode
     className?: string
 }
 
-const Tag: FC<TagInterface> = ({ children, className }) => {
+const Tag = forwardRef<HTMLHeadingElement, TagProps>(({ children, className }, ref) => {
     const cl = classNames(style.tag, className)
     return (
-        <span className={ cl }>
+        <span ref={ ref } className={ cl }>
             { children }
         </span>
     )
-}
+})
 
 export default Tag

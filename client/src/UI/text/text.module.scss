@@ -1,0 +1,9 @@
+@import '../../style/root.scss';
+@import '../../style/mixin/all';
+
+.text {
+    @include text;
+    &--big {
+        @include big-text;
+    }
+}

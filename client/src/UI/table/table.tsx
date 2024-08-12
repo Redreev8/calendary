@@ -1,18 +1,18 @@
-import { FC, ReactNode } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import style from './table.module.scss'
 import classNames from 'classnames'
-interface TableInterface {
+interface TableProps {
     className?: string
     th: ReactNode[]
     data: DataTable[]
 }
-
 export type DataTable = ReactNode[] | JSX.Element[]
 
-const Table: FC<TableInterface> = ({ className, th, data }) => {
+const Table = forwardRef<HTMLTableElement, TableProps>(({ className, th, data }, ref) => {
     const cl = classNames(style.table, className)
+
     return (
-        <table className={ cl }>
+        <table ref={ ref } className={ cl }>
             <thead>
                 <tr className={ classNames(style.tr) }>
                     {
@@ -38,6 +38,6 @@ const Table: FC<TableInterface> = ({ className, th, data }) => {
             </tbody>
         </table>
     )
-}
+})
 
 export default Table

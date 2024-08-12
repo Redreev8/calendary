@@ -1,10 +1,10 @@
 import style from './btn.module.scss'
 import { FC } from 'react'
 import Svg from '../svg'
-import { BtnInterface } from './btn'
+import { BtnProps } from './btn'
 
 
-const Content: FC<Omit<BtnInterface, 'ref' | 'href'>> = ({ children, icon }) => (
+const Content: FC<Omit<BtnProps, 'ref' | 'href'>> = ({ children, icon }) => (
     <>
         {
             children && (

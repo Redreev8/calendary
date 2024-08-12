@@ -20,7 +20,7 @@ type ScroollTemplate = {
 }
 
 const useScrollShadow = () => {
-    const ref = useRef<HTMLDivElement>(null)
+    const ref = useRef<HTMLDivElement | null>(null)
     const [styleVerticale, setSyleVerticale] = useState<ScroollTemplate>({maskImage: ''})
     const [styleHorizont, setStyleHorizont] = useState<ScroollTemplate>({maskImage: ''})
 
@@ -68,7 +68,7 @@ const useScrollShadow = () => {
     useEffect(() => {
         handelScroll()
     }, [])
-    return { handelScroll, ref, styleVerticale, styleHorizont }
+    return { handelScroll, refScrooll: ref, styleVerticale, styleHorizont }
 }
 
 export default useScrollShadow

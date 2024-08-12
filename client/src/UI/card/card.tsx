@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { forwardRef, LegacyRef, ReactNode } from 'react'
 import style from './card.module.scss'
 import classNames from 'classnames'
 interface CardProps {
@@ -7,21 +7,15 @@ interface CardProps {
     href?: string
 }
 
-const box = {
-    'link': ({children, ...props}: CardProps) => <a {...props}>{ children }</a>,
-    'div': ({children, ...props}: CardProps) => <div {...props}>{ children }</div>
-}
+const Link = forwardRef<HTMLAnchorElement, CardProps>(({children, ...props}, ref) => <a ref={ ref } {...props}>{ children }</a>)
+const Div = forwardRef<HTMLDivElement, CardProps>(({children, ...props}, ref) => <div ref={ ref } {...props}>{ children }</div>)
 
-const Card: FC<CardProps> = ({ href, children, className }) => {
+const Card = forwardRef<HTMLDivElement | HTMLAnchorElement, CardProps>(({ href, children, className }, ref) => {
     const cl = classNames(style.card, className)
-    const Componets = href ? box.link : box.div
-    return (
-        <Componets className={ cl }>
-            {
-                children
-            }
-        </Componets>
-    )
-}
+    if (href !== undefined) {
+        return <Link ref={ ref as LegacyRef<HTMLAnchorElement> | undefined } href={ href } className={ cl }> { children } </Link>
+    }
+    return <Div ref={ ref as LegacyRef<HTMLDivElement> | undefined } className={ cl }> { children } </Div>
+})
 
 export default Card

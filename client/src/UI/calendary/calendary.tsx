@@ -1,5 +1,5 @@
 import style from './calendary.module.scss'
-import { ReactNode } from 'react'
+import { FC, forwardRef, ReactNode } from 'react'
 import { PropsGetDaysWeek } from '../../helper/get-days-week-moth'
 import classnames from 'classnames'
 import Table from '../table'
@@ -14,7 +14,7 @@ export interface CalendaryProps extends PropsGetDaysWeek {
     isList?: boolean
 }
 
-const Calendary = ({ day = 1, month, year, data, isList=true }: CalendaryProps) => {
+const Calendary = forwardRef<HTMLTableElement, CalendaryProps>(({ day = 1, month, year, data, isList=true }, ref) => {
     const cl = classnames({
         [style.list]: isList
     })
@@ -22,11 +22,12 @@ const Calendary = ({ day = 1, month, year, data, isList=true }: CalendaryProps) 
 
     return (
         <Table
+            ref={ ref }
             className={ cl }
             th={ ths() }
             data={ DataTable() }
         />
     )
-}
+})
 
 export default Calendary

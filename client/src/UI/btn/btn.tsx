@@ -4,16 +4,16 @@ import { ButtonHTMLAttributes, forwardRef, Ref, ReactNode, LegacyRef } from 'rea
 import classNames from 'classnames'
 import Content from './btn-content'
 
-interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     ref?: React.Ref<HTMLButtonElement>
 }
-interface LinkInterface {
+interface LinkProps {
     className?: string
     children: ReactNode
     href: string
     ref?: LegacyRef<HTMLAnchorElement>
 }
-export interface BtnInterface {
+export interface BtnProps {
     className?: string
     children?: ReactNode
     icon?: string
@@ -23,11 +23,11 @@ export interface BtnInterface {
     isLink?: boolean
 }
 
-const Button = forwardRef<ButtonInterface, any>(({ children, ...props }, ref) => <button ref={ ref } { ...props }>{ children }</button>)
-const A = forwardRef<LinkInterface, any>(({ children, ...props }, ref) => <a ref={ ref } { ...props }>{ children }</a>)
+const Button = forwardRef<ButtonProps, any>(({ children, ...props }, ref) => <button ref={ ref } { ...props }>{ children }</button>)
+const A = forwardRef<LinkProps, any>(({ children, ...props }, ref) => <a ref={ ref } { ...props }>{ children }</a>)
 
 
-const Btn= forwardRef<BtnInterface, any>(({ className, children, icon, href, isSmall, isLink, ...props }, ref) => {
+const Btn= forwardRef<BtnProps, any>(({ className, children, icon, href, isSmall, isLink, ...props }, ref) => {
     const cl = classNames(style.btn, className, {
         [style['btn--link']]: isLink,
         [style['btn--small']]: isSmall

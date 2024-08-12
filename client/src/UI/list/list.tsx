@@ -1,7 +1,7 @@
 import { Children, forwardRef, ReactNode } from 'react'
 import style from './list.module.scss'
 import classNames from 'classnames'
-interface ListInterface {
+interface ListProps {
     children: ReactNode
     className?: string
     isBorder?: boolean
@@ -9,7 +9,7 @@ interface ListInterface {
     isRow?: boolean
 }
 
-const List = forwardRef<HTMLUListElement, ListInterface>(
+const List = forwardRef<HTMLUListElement, ListProps>(
     ({ className = '', children, isBorder = false, isBorderBottom = false, isRow = false }, ref) => {
         const cl = classNames(style.list, className, {
             [style['list--row']]: isRow,

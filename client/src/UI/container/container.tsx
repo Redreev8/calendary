@@ -2,12 +2,12 @@ import classNames from 'classnames'
 import style from './container.module.scss'
 import { Children, FC, ReactNode } from 'react'
 
-interface Interface {
+interface ContainerProps {
     children: ReactNode
     className?: string
 }
 
-const Container: FC<Interface> = ({ children, className }) => {
+const Container: FC<ContainerProps> = ({ children, className }) => {
     const cl = classNames(
         style.container, 
         className, 
