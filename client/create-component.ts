@@ -28,7 +28,7 @@ CreateComponentFile({
         },
         {
             name: ({ isStyle, name }) => {
-                if (isStyle === 'false') return
+                if (isStyle !== 'true') return
                 return `${name}.module.scss`
             },
             content: () => contentStyleModule(),
