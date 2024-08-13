@@ -12,7 +12,11 @@
 }
 
 thead {
+    border-top: $border-line;
     border-bottom: $border-line;
+    & th {
+        padding: $g-md;
+    }
 }
 
 .tr {

@@ -28,11 +28,15 @@
     }
     &--border.list--row {
         display: flex;
+        border-top: none;
         border-bottom: none;
     }
     &--border.list--row>&__item {
         border-top: $border-line;
         border-left: $border-line;
+        &:last-child { 
+            border-right: $border-line;
+        }
     }
     &--no-border-last &__item:last-child {
         border-bottom: none;
