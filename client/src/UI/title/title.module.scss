@@ -2,6 +2,7 @@
 @import '../../style/mixin/all';
 
 .title {
+    margin: 0;
     &--1 {
         @include h1;
     }
