@@ -3,7 +3,11 @@
 
 .text {
     @include text;
+    margin: 0;
     &--big {
         @include big-text;
+    }
+    &:not(:last-child) {
+        margin-bottom: $g;
     }
 }
