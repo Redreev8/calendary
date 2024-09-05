@@ -1,6 +1,7 @@
 @import '../../style/root.scss';
 
 .editor {
-    padding: $g-bg;
-    &__wrapp {}
+    &__wrapp {  
+        padding: $g-bg;
+    }
 }
