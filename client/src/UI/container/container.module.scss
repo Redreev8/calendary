@@ -2,7 +2,6 @@
 @import '../../style/root.scss';
 .container {
     display: grid;
-    max-width: $container-width;
     height: 100vh;
     width: 100%;
     margin: auto;
@@ -18,6 +17,12 @@
         overflow: hidden;
         &:not(:last-child) {
             border-right: $border-line;
+        }
+    }
+
+    @each $k, $w in $container-width {
+        &--#{$k} {
+            max-width: $w;
         }
     }
 

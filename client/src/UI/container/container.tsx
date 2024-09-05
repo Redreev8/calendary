@@ -5,12 +5,14 @@ import { Children, FC, ReactNode } from 'react'
 interface ContainerProps {
     children: ReactNode
     className?: string
+    width?: string
 }
 
-const Container: FC<ContainerProps> = ({ children, className }) => {
+const Container: FC<ContainerProps> = ({ children, width='default', className }) => {
     const cl = classNames(
         style.container, 
         className, 
+        style[`container--${width}`],
         Array.isArray(children) && style[`container--${children.length}`],
         {}
     )
