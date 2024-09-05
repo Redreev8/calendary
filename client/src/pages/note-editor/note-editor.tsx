@@ -3,6 +3,7 @@ import Container from '../../UI/container'
 import Editor from '../../UI/editor'
 import tools from './tools'
 import { ToolText } from '../../UI/text/tool'
+import BtnEditorCreate from '../../components/btn-editor-create'
 
 interface NoteEditorProps {}
 
@@ -10,7 +11,7 @@ const NoteEditor: FC<NoteEditorProps> = ({}) => {
     const EditorTool = Editor<ToolText>
 
     return (
-        <Container >
+        <Container width='gx'>
             <EditorTool  
                 initinalBlocks={ [{
                     type: 'text',
@@ -21,8 +22,9 @@ const NoteEditor: FC<NoteEditorProps> = ({}) => {
                 }] }
                 tools={tools}
             >
-
+                <BtnEditorCreate/>
             </EditorTool>
+            <></>
         </Container>
     )
 }

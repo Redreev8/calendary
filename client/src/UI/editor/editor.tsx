@@ -14,7 +14,7 @@ export const EditorContext = createContext<any>({
     addBlock: () => {}
 })
 
-const Editor = <T extends Tools>({ className, initinalBlocks, tools, initinalDefaultBlocks }: EditorProps<T>) => {
+const Editor = <T extends Tools>({ className, initinalBlocks, tools, initinalDefaultBlocks, children }: EditorProps<T>) => {
     const cl = classNames(style.editor, className)
     const { 
         blocks, 
@@ -26,8 +26,8 @@ const Editor = <T extends Tools>({ className, initinalBlocks, tools, initinalDef
     } = useEditor({ initinalBlocks, tools, initinalDefaultBlocks })
     return (
         <div className={ cl }>
-            <div className={ style['editor__wrapp'] }>
-                <EditorContext.Provider value={{ 
+            <EditorContext.Provider 
+                value={{ 
                     blocks, 
                     setBlocks, 
                     tools, 
@@ -35,15 +35,18 @@ const Editor = <T extends Tools>({ className, initinalBlocks, tools, initinalDef
                     setDefaultBlocks, 
                     addBlock,
                     removeBlock
-                } as EditorContenxt<T>}>              
+                } as EditorContenxt<T>}
+            >
+                <div className={ style['editor__wrapp'] }>            
                     {
                         blocks!.map(el => {
                             const Conpmonent = tools[el.type].render
                             return  <Conpmonent { ...el } key={ el.time }></Conpmonent>
                         })
                     }
-                </EditorContext.Provider>
-            </div>
+                </div>
+                { children }
+            </EditorContext.Provider>
         </div>
     )
 }

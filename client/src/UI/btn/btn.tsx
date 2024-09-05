@@ -21,16 +21,18 @@ export interface BtnProps {
     ref?: Ref<HTMLButtonElement>
     isSmall?: boolean
     isLink?: boolean
+    isFull?: boolean
 }
 
 const Button = forwardRef<ButtonProps, any>(({ children, ...props }, ref) => <button ref={ ref } { ...props }>{ children }</button>)
 const A = forwardRef<LinkProps, any>(({ children, ...props }, ref) => <a ref={ ref } { ...props }>{ children }</a>)
 
 
-const Btn= forwardRef<BtnProps, any>(({ className, children, icon, href, isSmall, isLink, ...props }, ref) => {
+const Btn= forwardRef<BtnProps, any>(({ className, isFull, children, icon, href, isSmall, isLink, ...props }, ref) => {
     const cl = classNames(style.btn, className, {
         [style['btn--link']]: isLink,
-        [style['btn--small']]: isSmall
+        [style['btn--small']]: isSmall,
+        [style['btn--full']]: isFull
     })
     if (href != undefined) return (
         <A { ...props } href={ href } ref={ ref } className={ cl }>

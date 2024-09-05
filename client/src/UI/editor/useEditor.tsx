@@ -2,7 +2,7 @@ import { useState } from 'react'
 import useIsMounted from '../../hook/useIsMounted'
 import { block, EditorProps, Tools } from './type-editor'
 
-const useEditor = <T extends Tools>({  initinalBlocks, tools, initinalDefaultBlocks }: Omit<EditorProps<T>, 'className'>) => {
+const useEditor = <T extends Tools>({  initinalBlocks, tools, initinalDefaultBlocks }: Omit<EditorProps<T>, 'className' | 'children'>) => {
     const [blocks, setBlocks] = useState<block<T>[]>(initinalBlocks ?? [])
     const [defaultBlocks, setDefaultBlocks] = useState<keyof T>(initinalDefaultBlocks ?? Object.keys(tools)[0])
     const isMounted = useIsMounted()

@@ -34,6 +34,7 @@ export interface EditorProps<T extends Tools> {
     initinalDefaultBlocks?: keyof T
     tools: T
     className?: string
+    children: ReactNode
 }
 
 export interface EditorContenxt<T extends Tools = Tools> extends  Pick<EditorProps<T>, 'tools'> {
