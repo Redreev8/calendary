@@ -4,6 +4,7 @@ const setCursorEditable = (editableElem: HTMLElement, position: number, indexChi
     if (!editableElem.childNodes) return
     const child = (editableElem as HTMLElement)?.childNodes[indexChild]
     if (!child) return
+    
     if (position > child.textContent!.length) return setCursorEditable(editableElem, position - child.textContent!.length, indexChild + 1)
     if (child.nodeName != '#text') return setCursorEditable((child as HTMLElement), position, 0)
     range.setStart(

@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, } from 'react-router-dom'
 import PageCalendaryDay from './pages/page-calendary-day'
 import PageCalendary from './pages/page-calendary'
+import NoteEditor from './pages/note-editor'
 
 const router = createBrowserRouter([
 	{
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
 	{
 	  	path: '/calendary',
 	  	element: <PageCalendary/>,
+	},
+	{
+	  	path: '/editor',
+	  	element: <NoteEditor/>,
 	},
 ])
 

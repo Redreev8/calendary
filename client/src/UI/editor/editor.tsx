@@ -1,66 +1,48 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react'
+import { createContext } from 'react'
 import style from './editor.module.scss'
+import { EditorContenxt, EditorProps, Tools } from './type-editor'
 import classNames from 'classnames'
+import useEditor from './useEditor'
 
-export type RenderProps = {
-    data: {
-        [key: string]: any
-    },
-    props: {
-        [key: string]: any
-    },
-    key: string | number
-}
 
-export type EventToolRender = {
-    onChange: (data: any) => void
-}
+export const EditorContext = createContext<any>({
+    blocks: [],
+    setBlocks: undefined,
+    setDefaultBlocks: undefined,
+    tools: {},
+    isMounted: false,
+    addBlock: () => {}
+})
 
-export type Tools = {
-    [key: string]: {
-        data: {
-            [key: string]: any
-        }
-        render: (props: any, event: EventToolRender) => ReactNode 
-    }
-} 
-type block<T extends Tools> = {
-    type: keyof T
-    props: {
-        [key: string]: any
-    },
-    data: T[keyof T]['data']
-    key: string | number
-}
-
-export interface EditorProps<T extends Tools> {
-    blocks: block<T>[]
-    setBlocks?: Dispatch<SetStateAction<block<T>[]>>
-    isRender?: boolean
-    tools: T
-    className?: string
-}
-
-const Editor = <T extends Tools>({ className, blocks, setBlocks, tools }: EditorProps<T>) => {
+const Editor = <T extends Tools>({ className, initinalBlocks, tools, initinalDefaultBlocks }: EditorProps<T>) => {
     const cl = classNames(style.editor, className)
-    const handelChange = <D extends T[keyof T]['data'] >(i: number, data: D) => {
-        if (!setBlocks) return 
-        setBlocks(prev => prev.map((el, index) => {
-            if (index !== i) return el
-            el.data = data
-            return el
-        }))
-    }
+    const { 
+        blocks, 
+        setBlocks,
+        isMounted, 
+        setDefaultBlocks, 
+        addBlock,
+        removeBlock
+    } = useEditor({ initinalBlocks, tools, initinalDefaultBlocks })
     return (
         <div className={ cl }>
             <div className={ style['editor__wrapp'] }>
-                {
-                    blocks!.map((el, i) => (
-                        tools[el.type].render(el, { 
-                            onChange: (data: T[typeof el.type]['data']) => handelChange<T[typeof el.type]['data']>(i, data) 
-                        }))
-                    )
-                }
+                <EditorContext.Provider value={{ 
+                    blocks, 
+                    setBlocks, 
+                    tools, 
+                    isMounted, 
+                    setDefaultBlocks, 
+                    addBlock,
+                    removeBlock
+                } as EditorContenxt<T>}>              
+                    {
+                        blocks!.map(el => {
+                            const Conpmonent = tools[el.type].render
+                            return  <Conpmonent { ...el } key={ el.time }></Conpmonent>
+                        })
+                    }
+                </EditorContext.Provider>
             </div>
         </div>
     )
