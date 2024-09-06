@@ -1,0 +1,19 @@
+@import '../../style/root.scss';
+@import '../../style/mixin/_all.scss';
+
+.input {
+    @include jura;
+    @include text;
+    padding: $g;
+    border: $border-line;
+    transition: background-color .6s .0s,
+                color .6s 0s;
+    &:not(:disabled):hover,
+    &:not(:disabled):focus {
+        color: $white;
+        background-color: $black;
+    }
+    &::placeholder {
+        color: $gray;
+    }
+}
