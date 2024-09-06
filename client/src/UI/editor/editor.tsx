@@ -25,29 +25,27 @@ const Editor = <T extends Tools>({ className, initinalBlocks, tools, initinalDef
         removeBlock
     } = useEditor({ initinalBlocks, tools, initinalDefaultBlocks })
     return (
-        <div className={ cl }>
-            <EditorContext.Provider 
-                value={{ 
-                    blocks, 
-                    setBlocks, 
-                    tools, 
-                    isMounted, 
-                    setDefaultBlocks, 
-                    addBlock,
-                    removeBlock
-                } as EditorContenxt<T>}
-            >
-                <div className={ style['editor__wrapp'] }>            
-                    {
-                        blocks!.map(el => {
-                            const Conpmonent = tools[el.type].render
-                            return  <Conpmonent { ...el } key={ el.time }></Conpmonent>
-                        })
-                    }
-                </div>
-                { children }
-            </EditorContext.Provider>
-        </div>
+        <EditorContext.Provider 
+            value={{ 
+                blocks, 
+                setBlocks, 
+                tools, 
+                isMounted, 
+                setDefaultBlocks, 
+                addBlock,
+                removeBlock
+            } as EditorContenxt<T>}
+        >
+            <div className={ cl }>            
+                {
+                    blocks!.map(el => {
+                        const Conpmonent = tools[el.type].render
+                        return  <Conpmonent { ...el } key={ el.time }></Conpmonent>
+                    })
+                }
+            </div>
+            { children }
+        </EditorContext.Provider>
     )
 }
 
