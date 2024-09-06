@@ -8,7 +8,7 @@
     border-left: $border-line;
     border-right: $border-line;
     box-sizing: border-box;
-    &__col {
+    & &__col {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -17,6 +17,22 @@
         overflow: hidden;
         &:not(:last-child) {
             border-right: $border-line;
+        }
+        &>* {
+            border-left: none;
+            border-right: none;
+            &:not(:last-child) {
+                border-bottom: none;
+            }
+        }
+    }
+
+    @each $k, $g in $gap-map {
+        & &__col--p-#{$k} {
+            &>* {
+                padding-left: $g-bg;
+                padding-right: $g-bg;    
+            }
         }
     }
 
