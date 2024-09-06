@@ -1,9 +1,10 @@
-import { forwardRef, ForwardRefExoticComponent, ReactNode, RefAttributes } from 'react'
+import { forwardRef, ForwardRefExoticComponent, HtmlHTMLAttributes, ReactNode, RefAttributes } from 'react'
 import style from './title.module.scss'
 import classNames from 'classnames'
-interface TitleProps {
+interface TitleProps extends HtmlHTMLAttributes<HTMLHeadingElement> {
     children: ReactNode
     level?: number
+    levelTag?: number
     className?: string
 }
 
@@ -19,10 +20,11 @@ const levels: Levels = {
     5: forwardRef<HTMLHeadingElement, TitleProps>(({ children, ...props }, ref) => <h5 ref={ ref } { ...props }>{ children }</h5>),
 }
 
-const Title = forwardRef<HTMLHeadingElement, TitleProps>(({ className, level=2, children }, ref) => {
-    const cl = classNames(style.title, className, style[`title--${levels}`])
-    const Componet = levels[level]
-    return <Componet ref={ ref } className={ cl }>
+const Title = forwardRef<HTMLHeadingElement, TitleProps>(({ className, level=2, levelTag=level, children, ...props }, ref) => {
+    const cl = classNames(style.title, className, style[`title--${level}`])
+
+    const Componet = levels[levelTag]
+    return <Componet ref={ ref } className={ cl } { ...props }>
         { children }
     </Componet>
 })
