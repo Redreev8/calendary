@@ -14,7 +14,7 @@ const BtnEditorCreate: FC<BtnEditorCreateProps> = ({ className }) => {
     const handelClick = () => {
         console.log(blocks);
         
-        addBlock(blocks[blocks.length - 1].time ?? 0)
+        addBlock()
     }
 
     return (
