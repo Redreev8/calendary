@@ -1,4 +1,4 @@
-import { createContext } from 'react'
+import { createContext, FC } from 'react'
 import style from './editor.module.scss'
 import { EditorContenxt, EditorProps, Tools } from './type-editor'
 import classNames from 'classnames'
@@ -13,9 +13,10 @@ export const EditorContext = createContext<any>({
     isMounted: false,
     addBlock: () => {}
 })
-
-const Editor = <T extends Tools>({ className, initinalBlocks, tools, initinalDefaultBlocks, children }: EditorProps<T>) => {
+const DefualtWrapp: FC<any> = ({ children, ...prosp}) => <div { ...prosp }>{ children }</div>
+const Editor = <T extends Tools>({ wrapp, className, initinalBlocks, tools, initinalDefaultBlocks, children }: EditorProps<T>) => {
     const cl = classNames(style.editor, className)
+    const Wrapp: FC<any> = wrapp ? wrapp : DefualtWrapp
     const { 
         blocks, 
         setBlocks,
@@ -24,6 +25,7 @@ const Editor = <T extends Tools>({ className, initinalBlocks, tools, initinalDef
         addBlock,
         removeBlock
     } = useEditor({ initinalBlocks, tools, initinalDefaultBlocks })
+    
     return (
         <EditorContext.Provider 
             value={{ 
@@ -36,14 +38,14 @@ const Editor = <T extends Tools>({ className, initinalBlocks, tools, initinalDef
                 removeBlock
             } as EditorContenxt<T>}
         >
-            <div className={ cl }>            
+            <Wrapp className={ cl }>            
                 {
                     blocks!.map(el => {
                         const Conpmonent = tools[el.type].render
                         return  <Conpmonent { ...el } key={ el.time }></Conpmonent>
                     })
                 }
-            </div>
+            </Wrapp>
             { children }
         </EditorContext.Provider>
     )

@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react'
+import { Dispatch, FC, ReactNode, SetStateAction } from 'react'
 
 export type RenderProps = {
     data: {
@@ -30,11 +30,12 @@ export type block<T extends Tools> = {
 }
 
 export interface EditorProps<T extends Tools> {
+    wrapp?: FC<any>
     initinalBlocks?: block<T>[] | []
     initinalDefaultBlocks?: keyof T
     tools: T
     className?: string
-    children: ReactNode
+    children?: ReactNode
 }
 
 export interface EditorContenxt<T extends Tools = Tools> extends  Pick<EditorProps<T>, 'tools'> {
@@ -42,6 +43,6 @@ export interface EditorContenxt<T extends Tools = Tools> extends  Pick<EditorPro
     setBlocks?: Dispatch<SetStateAction<block<T>[]>>
     setDefaultBlocks?: SetStateAction<keyof T>
     isMounted: boolean
-    addBlock: (time: keyof T) => void
+    addBlock: (time?: keyof T) => void
     removeBlock: (time: keyof T) => void
 }
