@@ -1,0 +1,28 @@
+@import '../../style/root.scss';
+
+.label {
+    display: flex;
+    flex-direction: column;
+    gap: $g-sm;
+    border: $border-line;
+    transition: background-color .6s .0s,
+                color .6s 0s;
+    &:not(:disabled):hover,
+    &:has(*:not(:disabled):hover),
+    &:has(*:not(:disabled):focus) {
+        color: $white;
+        background-color: $black;
+    }
+
+    &__text {
+        padding: $g;
+        &--heden {
+            display: none;
+        }
+    }
+    
+    & > * {
+        padding: $g;
+        border: none;
+    }
+}

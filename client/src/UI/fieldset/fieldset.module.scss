@@ -1,0 +1,14 @@
+@import '../../style/root.scss';
+@import '../../style/mixin/all.scss';
+
+.fieldset {
+    position: relative;
+    margin: 0;
+    padding: $g;
+    border: $border-line;
+
+    &__legend {
+        @include text;
+        color: $gray;
+    }
+}
