@@ -1,0 +1,18 @@
+@import '../../style/root.scss';
+
+input.input-date-time {
+    min-width: 156px;
+    width: auto;
+    &::-webkit-datetime-edit-text {
+        padding: 0 0;
+    }
+    &::-webkit-datetime-edit-year-field {
+        margin-right: $g-sm;
+    }
+    &::-webkit-datetime-edit-hour-field {
+        margin-right: $g-sm;
+    }
+    &::-webkit-datetime-edit-minute-field  {
+        margin-left: $g-sm;
+    }
+}

@@ -1,6 +1,7 @@
 @import '../../style/root.scss';
 
 .input-time {
+    min-width: 56px;
     &::-webkit-datetime-edit-fields-wrapper {
         display: flex;
         align-items: center;

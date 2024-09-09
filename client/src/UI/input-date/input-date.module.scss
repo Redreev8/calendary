@@ -1,6 +1,7 @@
 @import '../../style/root.scss';
 
 .input-date {
+    width: 86px;
     &::-webkit-calendar-picker-indicator{
         display: none;
     }
