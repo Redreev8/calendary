@@ -3,7 +3,6 @@
 .label {
     display: flex;
     flex-direction: column;
-    gap: $g-sm;
     border: $border-line;
     transition: background-color .6s .0s,
                 color .6s 0s;
@@ -24,5 +23,9 @@
     & > * {
         padding: $g;
         border: none;
+    }
+
+    & > button {
+        padding: $g-sm $g;
     }
 }

@@ -16,7 +16,6 @@ const Container: FC<ContainerProps> = ({ children, width='default', pg=[], class
         style[`container--${width}`],
         Array.isArray(children) && style[`container--${children.length}`],
     )
-    console.log(style);
     
     return (
         <div className={ cl }>

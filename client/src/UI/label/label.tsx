@@ -1,7 +1,7 @@
 import { FC, LabelHTMLAttributes, ReactNode } from 'react'
 import style from './label.module.scss'
 import classNames from 'classnames'
-interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
+export interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
     label: ReactNode
     isHidenLabel?: boolean
 }
