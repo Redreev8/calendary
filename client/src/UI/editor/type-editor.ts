@@ -44,5 +44,6 @@ export interface EditorContenxt<T extends Tools = Tools> extends  Pick<EditorPro
     setDefaultBlocks?: SetStateAction<keyof T>
     isMounted: boolean
     addBlock: (time?: keyof T) => void
+    changeBlock: (time: keyof T, data: { [key: string]: any }) => void
     removeBlock: (time: keyof T) => void
 }

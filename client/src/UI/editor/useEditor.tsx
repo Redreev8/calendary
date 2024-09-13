@@ -40,6 +40,14 @@ const useEditor = <T extends Tools>({
             return [...blocks]
         }) 
     }
+    const changeBlock = (time: number, data: { [key: string]: string }) => {
+        setBlocks(blocks => blocks.map(block => {
+            if (block.time === time) {
+                block.data = { ...block.data, ...data }
+            }
+            return block
+        }))
+    }
     const removeBlock = (time: number) => {
         setBlocks(blocks => blocks.filter(block => block.time !== time))
     }
@@ -49,6 +57,7 @@ const useEditor = <T extends Tools>({
         isMounted, 
         setDefaultBlocks, 
         addBlock,
+        changeBlock,
         removeBlock
     }
 }

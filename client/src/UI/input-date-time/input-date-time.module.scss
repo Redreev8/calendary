@@ -10,6 +10,7 @@ input.input-date-time {
         margin-right: $g-sm;
     }
     &::-webkit-datetime-edit-hour-field {
+        margin-left: auto;
         margin-right: $g-sm;
     }
     &::-webkit-datetime-edit-minute-field  {

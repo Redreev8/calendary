@@ -5,17 +5,11 @@ import { EditorContext } from '../editor/editor'
 import setCursorEditable from '../../helper/set-cursor-editable'
 
 const useToolText = ({ time }: ToolTextData) => {
-    const { setBlocks, isMounted, addBlock, removeBlock } = useContext<EditorContenxt<ToolText>>(EditorContext)
+    const { setBlocks, isMounted, changeBlock, addBlock, removeBlock } = useContext<EditorContenxt<ToolText>>(EditorContext)
     const ref = useRef<HTMLDivElement>(null)
     const handelChange = (e: ChangeEvent<HTMLDivElement>) => {
-        if (!e.target!.textContent && !setBlocks) return
-        setBlocks!(prev => {
-            prev.forEach(block => {
-                if(block.time !== time) return
-                block.data.children = e.target!.textContent
-            })
-            return prev
-        })	
+        if (!e.target!.textContent && !setBlocks) return	
+        changeBlock(time, { children: e.target!.textContent })
     }
     const handelBlur = () => {
     }

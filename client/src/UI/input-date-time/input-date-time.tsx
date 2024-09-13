@@ -6,7 +6,7 @@ import classNames from 'classnames'
 import Input from '../input/input'
 interface InputDateTimeProps  extends InputHTMLAttributes<HTMLInputElement> {}
 
-const InputDateTime = forwardRef<HTMLInputElement, InputDateTimeProps>(({ className }, ref) => {
+const InputDateTime = forwardRef<HTMLInputElement, InputDateTimeProps>(({ className, ...props }, ref) => {
     return (
         <Input 
             ref={ ref }
@@ -19,6 +19,7 @@ const InputDateTime = forwardRef<HTMLInputElement, InputDateTimeProps>(({ classN
                 )
             }
             type='datetime-local'
+            { ...props }
         />
     )
 })

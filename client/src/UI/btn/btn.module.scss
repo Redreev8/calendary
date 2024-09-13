@@ -13,6 +13,9 @@
                 color .6s 0s;
     cursor: pointer;
     
+    &:disabled {
+        cursor: default;
+    }
     &:not(:disabled):hover {
         color: $white;
         background-color: $black;
@@ -59,7 +62,6 @@
 
         
     }
-
     &:not(:disabled):hover &__icon svg {}
     &:not(:disabled):hover &__icon::before {}
 }
