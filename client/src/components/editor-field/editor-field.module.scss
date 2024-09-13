@@ -1,1 +1,6 @@
 @import '../../style/root.scss';
+
+.fieldset {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

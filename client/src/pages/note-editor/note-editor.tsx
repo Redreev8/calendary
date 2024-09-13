@@ -1,48 +1,37 @@
-import { FC } from 'react'
+import { FC, forwardRef, useRef } from 'react'
 import Container from '../../UI/container'
 import EditorNote from '../../components/editor-note'
-import Fieldset from '../../UI/fieldset'
-import Editor from '../../UI/editor'
-import BtnEditorCreate from '../../components/btn-editor-create'
-import InputDateTime from '../../UI/input-date-time'
-import Label from '../../UI/label'
 import EditorField from '../../components/editor-field'
-import toolInputDateTime, { ToolInputDateTime } from '../../UI/input-date-time/tool-input-date-time'
-
+import DropzoneImgs from '../../components/dropzone-imgs'
+import toolInputDateTimeInteval, { ToolInputDateTimeInteval } from '../../components/tool-input-date-time-interval/tool-input-date-time-interval'
+import { block } from '../../UI/editor/type-editor'
 interface NoteEditorProps {}
 
+const EditorFieldDateTime = forwardRef(EditorField<ToolInputDateTimeInteval>)
 const NoteEditor: FC<NoteEditorProps> = ({}) => {
-    const EditorFieldDateTime  = EditorField<ToolInputDateTime>
+    const refContent = useRef()
+    const refDateTime = useRef<block<ToolInputDateTimeInteval>[]>([])
+    const refImgs = useRef()
     return (
         <Container width='gx' pg={['bg']}>
             <>
-                <EditorNote/>
-                {/* <Editor
-                    tools={{}}
-                    wrapp={({ children, ...props }) => <Fieldset legend='Дата и время' { ...props }>{ children }</Fieldset>}
-                >
-                    <BtnEditorCreate/>
-                </Editor> */}
-                {/* <Fieldset legend='Time'>
-                    <Label label='Дата' isHidenLabel>
-                        <InputDateTime/>
-                    </Label>
-                </Fieldset> */}
+                <EditorNote ref={ refContent } />
                 <EditorFieldDateTime
-                    wrapp={({ children }) => <Fieldset legend='Time'>{ children }</Fieldset>}
+                    ref={ refDateTime }
                     initinalBlocks={[
                         {
-                            type: 'input-date-time',
+                            type: 'input-date-time-inteval',
                             data: {
-                                value: ''
+                                date: '',
+                                inteval: '',
                             },
                             time: 123
                         }
                     ]}
-                    tools={ toolInputDateTime }
+                    tools={ toolInputDateTimeInteval }
                 />
             </>
-            <></>
+            <DropzoneImgs ref={ refImgs } />
         </Container>
     )
 }

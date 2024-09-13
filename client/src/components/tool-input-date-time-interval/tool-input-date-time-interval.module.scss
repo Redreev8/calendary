@@ -1,0 +1,14 @@
+@import '../../style/root.scss';
+
+.row {
+    display: flex;
+}
+
+.input {
+    .row  &--date-time {
+        width: 100%;
+    }
+    &--interval {
+        width: 42px;
+    }
+}

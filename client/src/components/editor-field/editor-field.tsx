@@ -1,17 +1,20 @@
 import Editor from '../../UI/editor'
 import BtnEditorCreate from '../btn-editor-create'
-import { EditorProps, Tools } from '../../UI/editor/type-editor'
+import { block, EditorProps, Tools } from '../../UI/editor/type-editor'
+import Fieldset from '../../UI/fieldset'
+import style from './editor-field.module.scss'
+import { ForwardedRef, forwardRef, ReactNode } from 'react'
 interface EditorFieldProps {
     tools: Tools
     initinalBlocks: EditorProps<Tools>['initinalBlocks']
-    wrapp: EditorProps<Tools>['wrapp']
 }
 
-const EditorField = <T extends Tools>({ wrapp, tools, initinalBlocks }: EditorFieldProps) => {
-    const EditorTool = Editor<T>
+const EditorField = <T extends Tools>({ tools, initinalBlocks }: EditorFieldProps, ref: ForwardedRef<block<T>[]>) => {
+    const EditorTool = forwardRef(Editor<T>)
     return (
         <EditorTool
-            wrapp={ wrapp }
+            ref={ ref }
+            wrapp={({ children }: { children: ReactNode }) => <Fieldset className={ style['fieldset'] } legend='Time'>{ children }</Fieldset>}
             initinalBlocks={initinalBlocks as EditorProps<T>['initinalBlocks']}
             tools={tools as T}
         >

@@ -1,15 +1,15 @@
-import { FC } from 'react'
+import { forwardRef, LegacyRef } from 'react'
 import Editor from '../../UI/editor'
 import tools from './tools'
 import { ToolText } from '../../UI/text/tool'
 import BtnEditorCreate from '../btn-editor-create'
-interface EditorNoteProps {}
+import { block } from '../../UI/editor/type-editor'
 
-const EditorNote: FC<EditorNoteProps> = () => {
-    const EditorTool = Editor<ToolText>
-
+const EditorTool = forwardRef(Editor<ToolText>)
+const EditorNote = forwardRef(({}, ref) => {
     return (
         <EditorTool  
+            ref={ ref as LegacyRef<block<ToolText>[]> }
             initinalBlocks={[
                 {
                     type: 'title-editor-tools',
@@ -31,6 +31,6 @@ const EditorNote: FC<EditorNoteProps> = () => {
             <BtnEditorCreate/>
         </EditorTool>
     )
-}
+})
 
 export default EditorNote
